@@ -1,7 +1,7 @@
 <?php
 /* copyleft 2013 (CC-0) Melker "meklu" Narikka
  *
- * This is a script that parses events for a Steam group
+ * This is a library that parses events for a Steam group
  * into a neat array. We pull dates but not times, since
  * those are really dodgy.
  *
@@ -15,6 +15,9 @@
  * them there.
  */
 
+/**
+ * Parses Steam group events into arrays
+ */
 class SteamEventParser {
 	/**
 	 * Parses an event into an array
@@ -81,6 +84,7 @@ class SteamEventParser {
 	 */
 	public function genData($group, $month = "", $year = "", $tries = 3) {
 		$month = (empty($month)) ? gmstrftime("%m") : $month;
+		$month = (strlen($month) === 1) ? "0" . $month : (string) $month;
 		$year = (empty($year)) ? gmstrftime("%Y") : $year;
 		do {
 			$tries -= 1;
