@@ -98,6 +98,7 @@ class SteamEventParser {
 			return array("status" => false, "events" => array(), "pastevents" => array(),);
 		}
 		$str = stream_get_contents($f);
+		fclose($f);
 		$xml = simplexml_load_string($str);
 		$events = array();
 		$pastevents = array();
