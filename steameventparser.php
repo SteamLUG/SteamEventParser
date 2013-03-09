@@ -16,12 +16,13 @@
  */
 
 class SteamEventParser {
-	/* Parses an event into an array
+	/**
+	 * Parses an event into an array
 	 *
-	 * @param $str The HTML string from which to parse the event
-	 * @param $month The numeric month
-	 * @param $year The numeric year
-	 * @return An array of awesome stuff.
+	 * @param string $str The HTML string from which to parse the event
+	 * @param int $month The numeric month
+	 * @param int $year The numeric year
+	 * @return array An array of awesome stuff.
 	 */
 	private function parseEvent($str, $month, $year) {
 		$str = str_replace("&nbsp;", "", $str);
@@ -69,13 +70,14 @@ class SteamEventParser {
 		return $event;
 	}
 
-	/* Generates the event data for a given month
+	/**
+	 * Generates the event data for a given month
 	 *
-	 * @param $group The Steam group to get the data for
-	 * @param $month The numeric month
-	 * @param $year The numeric year
-	 * @param $tries The amount of tries used for grabbing the data from Steam
-	 * @return An array of events
+	 * @param string $group The Steam group to get the data for
+	 * @param int $month The numeric month
+	 * @param int $year The numeric year
+	 * @param int $tries The amount of tries used for grabbing the data from Steam
+	 * @return array An array of events
 	 */
 	public function genData($group, $month = "", $year = "", $tries = 3) {
 		$month = (empty($month)) ? gmstrftime("%m") : $month;
