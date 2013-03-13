@@ -33,10 +33,10 @@ The data will look something like this:
                 'url' => 'http://steamcommunity.com/groups/steamlug#events/1298431274646156785',
                 'title' => 'SteamLUG FPS Friturday #7',
                 'date' => '2013-03-15',
-                'appid' => '059837f790367b171af255980c09614d71a34efe.jpg',
+                'appid' => '223470',
                 'img_small' => 'http://media.steampowered.com/steamcommunity/public/images/apps/223470/059837f790367b171af255980c09614d71a34efe.jpg',
-                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/059837f790367b171af255980c09614d71a34efe.jpg/header.jpg',
-                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/059837f790367b171af255980c09614d71a34efe.jpg/header_292x136.jpg',
+                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/223470/header.jpg',
+                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/223470/header_292x136.jpg',
             ),
             1 => 
             array (
@@ -44,10 +44,10 @@ The data will look something like this:
                 'url' => 'http://steamcommunity.com/groups/steamlug#events/1299557718965155742',
                 'title' => 'SteamLUG Team Fortress 2',
                 'date' => '2013-03-22',
-                'appid' => 'e3f595a92552da3d664ad00277fad2107345f743.jpg',
+                'appid' => '440',
                 'img_small' => 'http://media.steampowered.com/steamcommunity/public/images/apps/440/e3f595a92552da3d664ad00277fad2107345f743.jpg',
-                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/e3f595a92552da3d664ad00277fad2107345f743.jpg/header.jpg',
-                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/e3f595a92552da3d664ad00277fad2107345f743.jpg/header_292x136.jpg',
+                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/440/header.jpg',
+                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/440/header_292x136.jpg',
             ),
             2 => 
             array (
@@ -55,10 +55,10 @@ The data will look something like this:
                 'url' => 'http://steamcommunity.com/groups/steamlug#events/1299557718964524322',
                 'title' => 'SteamLUG FPS Friturday #8',
                 'date' => '2013-03-23',
-                'appid' => '077b050ef3e89cd84e2c5a575d78d53b54058236.jpg',
+                'appid' => '80',
                 'img_small' => 'http://media.steampowered.com/steamcommunity/public/images/apps/80/077b050ef3e89cd84e2c5a575d78d53b54058236.jpg',
-                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/077b050ef3e89cd84e2c5a575d78d53b54058236.jpg/header.jpg',
-                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/077b050ef3e89cd84e2c5a575d78d53b54058236.jpg/header_292x136.jpg',
+                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/80/header.jpg',
+                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/80/header_292x136.jpg',
             ),
         ),
         'pastevents' => 
@@ -69,10 +69,10 @@ The data will look something like this:
                 'url' => 'http://steamcommunity.com/groups/steamlug#events/1298431274645364521',
                 'title' => 'SteamLUG FPS Friturday #6',
                 'date' => '2013-03-09',
-                'appid' => '66519d69efc5b98bdafe61347db4ec8be01dff7b.jpg',
+                'appid' => '1200',
                 'img_small' => 'http://media.steampowered.com/steamcommunity/public/images/apps/1200/66519d69efc5b98bdafe61347db4ec8be01dff7b.jpg',
-                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/66519d69efc5b98bdafe61347db4ec8be01dff7b.jpg/header.jpg',
-                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/66519d69efc5b98bdafe61347db4ec8be01dff7b.jpg/header_292x136.jpg',
+                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/1200/header.jpg',
+                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/1200/header_292x136.jpg',
             ),
             1 => 
             array (
@@ -80,10 +80,10 @@ The data will look something like this:
                 'url' => 'http://steamcommunity.com/groups/steamlug#events/1298431274647178464',
                 'title' => 'SteamLUG Team Fortress 2',
                 'date' => '2013-03-08',
-                'appid' => 'e3f595a92552da3d664ad00277fad2107345f743.jpg',
+                'appid' => '440',
                 'img_small' => 'http://media.steampowered.com/steamcommunity/public/images/apps/440/e3f595a92552da3d664ad00277fad2107345f743.jpg',
-                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/e3f595a92552da3d664ad00277fad2107345f743.jpg/header.jpg',
-                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/e3f595a92552da3d664ad00277fad2107345f743.jpg/header_292x136.jpg',
+                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/440/header.jpg',
+                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/440/header_292x136.jpg',
             ),
             2 => 
             array (
@@ -91,10 +91,10 @@ The data will look something like this:
                 'url' => 'http://steamcommunity.com/groups/steamlug#events/1298431274644569141',
                 'title' => 'SteamLUG FPS Friturday #5',
                 'date' => '2013-03-01',
-                'appid' => '9052fa60c496a1c03383b27687ec50f4bf0f0e10.jpg',
+                'appid' => '240',
                 'img_small' => 'http://media.steampowered.com/steamcommunity/public/images/apps/240/9052fa60c496a1c03383b27687ec50f4bf0f0e10.jpg',
-                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/9052fa60c496a1c03383b27687ec50f4bf0f0e10.jpg/header.jpg',
-                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/9052fa60c496a1c03383b27687ec50f4bf0f0e10.jpg/header_292x136.jpg',
+                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/240/header.jpg',
+                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/240/header_292x136.jpg',
             ),
         ),
     )
