@@ -5,7 +5,8 @@
  * into a neat array. We pull dates but not times, since
  * those are really dodgy.
  *
- * You'll need SimpleXML support for your copy of PHP.
+ * You'll need DOM support for your copy of PHP. (See
+ * http://www.php.net/manual/en/book.dom.php for more on this.)
  *
  * Basically we're pulling some XML from Steam, and then
  * doing awful hacky processing on it.
@@ -28,48 +29,49 @@ class SteamEventParser {
 	 * @return array An array of awesome stuff.
 	 */
 	private function parseEvent($str, $month, $year) {
-		$str = str_replace("&nbsp;", "", $str);
-		$xml = simplexml_load_string($str);
+		$html = new DOMDocument();
+		$html->loadHTML($str);
 		$event = array();
-		foreach ($xml->children() as $key => $value) {
-			//echo "$key: $value\n";
-			if ($key === "monthName") $month = $value;
-			elseif ($key === "year") $year = $value;
-			else {
-				foreach ($value->children() as $k => $v) {
-					//echo "\t$k: $v\n";
-					if ($k === "a") {
-						foreach ($v->attributes() as $ak => $av) {
-							if ($ak === "href") {
-								$event["id"] = explode("/", (string) $av);
-								$event["id"] = $event["id"][count($event["id"]) - 1];
-								$event["url"] = (string) $av;
-							}
-							//echo "\t\t\t$ak: $av\n";
+		foreach ($html->getElementsByTagName("html") as $topnode) {
+			$node = $topnode->getElementsByTagName("body");
+			foreach ($node as $body) {
+				foreach ($body->childNodes as $node) {
+					$_id = explode("_", $node->getAttribute("id"));
+					$_id = $_id[0];
+					foreach ($node->getElementsByTagName("div") as $subnode) {
+						$class = $subnode->getAttribute("class");
+						if ($class === "eventDateBlock") {
+							// date
+							$_date = explode(" ", $subnode->firstChild->textContent);
+							$_date = (strlen($_date[1]) === 1) ? "0" . $_date[1] : (string) $_date[1];
+							$_date = "$year-$month-" . $_date;
+						} elseif ($class === "playerAvatar") {
+							// url, images
+							$a = $subnode->firstChild;
+							$_url = $a->getAttribute("href");
+							$img = $a->firstChild;
+							$_img_small = $img->getAttribute("src");
+							$_appid = explode("/", $_img_small);
+							$_appid = $_appid[count($_appid) - 1];
+							$_img_header = "http://cdn.steampowered.com/v/gfx/apps/" . $_appid . "/header.jpg";
+							$_img_header_small = "http://cdn.steampowered.com/v/gfx/apps/" . $_appid . "/header_292x136.jpg";
+						} elseif ($class === "eventBlockTitle") {
+							// title
+							$a = $subnode->firstChild;
+							$_title = $a->textContent;
 						}
-						//foreach ($v->children() as $ck => $cv) {
-						//	echo "\t\t\t$ck: $cv\n";
-						//}
 					}
 				}
 			}
 		}
-		foreach ($xml->xpath("//div[@class='eventDateBlock']/span[1]") as $key => $value) {
-			$date = explode(" ", (string) $value);
-			$date = (strlen($date[1]) === 1) ? "0" . $date[1] : (string) $date[1];
-			$event["date"] = "$year-$month-" . $date;
-		}
-		foreach ($xml->xpath("//img") as $key => $value) {
-			foreach ($value->attributes() as $ak => $av) {
-				if ($ak === "src") {
-					$event["appid"] = explode("/", (string) $av);
-					$event["appid"] = $event["appid"][count($event["appid"]) - 2];
-					$event["img_small"] = (string) $av;
-					$event["img_header"] = "http://cdn.steampowered.com/v/gfx/apps/" . $event["appid"] . "/header.jpg";
-					$event["img_header_small"] = "http://cdn.steampowered.com/v/gfx/apps/" . $event["appid"] . "/header_292x136.jpg";
-				}
-			}
-		}
+		$event["id"] = $_id;
+		$event["url"] = $_url;
+		$event["title"] = $_title;
+		$event["date"] = $_date;
+		$event["appid"] = $_appid;
+		$event["img_small"] = $_img_small;
+		$event["img_header"] = $_img_header;
+		$event["img_header_small"] = $_img_header_small;
 		return $event;
 	}
 
@@ -99,17 +101,15 @@ class SteamEventParser {
 		}
 		$str = stream_get_contents($f);
 		fclose($f);
-		$xml = simplexml_load_string($str);
+		$xml = new DOMDocument();
+		$xml->loadXML($str);
 		$events = array();
 		$pastevents = array();
-		foreach ($xml->children() as $key => $value) {
-			if ($key === "event") {
-				$events[] = $this->parseEvent($value, $month, $year);
-			} elseif ($key === "expiredEvent") {
-				$pastevents[] = $this->parseEvent($value, $month, $year);
-			//} else {
-			//	echo "$key: $value\n";
-			}
+		foreach ($xml->getElementsByTagName("event") as $e) {
+			$events[] = $this->parseEvent($e->nodeValue, $month, $year);
+		}
+		foreach ($xml->getElementsByTagName("expiredEvent") as $e) {
+			$pastevents[] = $this->parseEvent($e->nodeValue, $month, $year);
 		}
 		return array("status" => true, "events" => $events, "pastevents" => $pastevents);
 	}
