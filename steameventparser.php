@@ -32,34 +32,32 @@ class SteamEventParser {
 		$html = new DOMDocument();
 		$html->loadHTML($str);
 		$event = array();
-		foreach ($html->getElementsByTagName("html") as $topnode) {
-			$node = $topnode->getElementsByTagName("body");
-			foreach ($node as $body) {
-				foreach ($body->childNodes as $node) {
-					$_id = explode("_", $node->getAttribute("id"));
-					$_id = $_id[0];
-					foreach ($node->getElementsByTagName("div") as $subnode) {
-						$class = $subnode->getAttribute("class");
-						if ($class === "eventDateBlock") {
-							// date
-							$_date = explode(" ", $subnode->firstChild->textContent);
-							$_date = (strlen($_date[1]) === 1) ? "0" . $_date[1] : (string) $_date[1];
-							$_date = "$year-$month-" . $_date;
-						} elseif ($class === "playerAvatar") {
-							// url, images
-							$a = $subnode->firstChild;
-							$_url = $a->getAttribute("href");
-							$img = $a->firstChild;
-							$_img_small = $img->getAttribute("src");
-							$_appid = explode("/", $_img_small);
-							$_appid = $_appid[count($_appid) - 1];
-							$_img_header = "http://cdn.steampowered.com/v/gfx/apps/" . $_appid . "/header.jpg";
-							$_img_header_small = "http://cdn.steampowered.com/v/gfx/apps/" . $_appid . "/header_292x136.jpg";
-						} elseif ($class === "eventBlockTitle") {
-							// title
-							$a = $subnode->firstChild;
-							$_title = $a->textContent;
-						}
+		$node = $html->getElementsByTagName("body");
+		foreach ($node as $body) {
+			foreach ($body->childNodes as $node) {
+				$_id = explode("_", $node->getAttribute("id"));
+				$_id = $_id[0];
+				foreach ($node->getElementsByTagName("div") as $subnode) {
+					$class = $subnode->getAttribute("class");
+					if ($class === "eventDateBlock") {
+						// date
+						$_date = explode(" ", $subnode->firstChild->textContent);
+						$_date = (strlen($_date[1]) === 1) ? "0" . $_date[1] : (string) $_date[1];
+						$_date = "$year-$month-" . $_date;
+					} elseif ($class === "playerAvatar") {
+						// url, images
+						$a = $subnode->firstChild;
+						$_url = $a->getAttribute("href");
+						$img = $a->firstChild;
+						$_img_small = $img->getAttribute("src");
+						$_appid = explode("/", $_img_small);
+						$_appid = $_appid[count($_appid) - 1];
+						$_img_header = "http://cdn.steampowered.com/v/gfx/apps/" . $_appid . "/header.jpg";
+						$_img_header_small = "http://cdn.steampowered.com/v/gfx/apps/" . $_appid . "/header_292x136.jpg";
+					} elseif ($class === "eventBlockTitle") {
+						// title
+						$a = $subnode->firstChild;
+						$_title = $a->textContent;
 					}
 				}
 			}
