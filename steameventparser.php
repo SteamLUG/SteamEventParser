@@ -51,7 +51,7 @@ class SteamEventParser {
 						$img = $a->firstChild;
 						$_img_small = $img->getAttribute("src");
 						$_appid = explode("/", $_img_small);
-						$_appid = $_appid[count($_appid) - 1];
+						$_appid = $_appid[count($_appid) - 2];
 						$_img_header = "http://cdn.steampowered.com/v/gfx/apps/" . $_appid . "/header.jpg";
 						$_img_header_small = "http://cdn.steampowered.com/v/gfx/apps/" . $_appid . "/header_292x136.jpg";
 					} elseif ($class === "eventBlockTitle") {
