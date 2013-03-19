@@ -73,7 +73,7 @@ class SteamEventParser {
 		$event["url"] = $_url;
 		$event["title"] = $_title;
 		$event["date"] = $tempDate->format("Y-m-d");
-		$event["time"] = $tempDate->format("H:ia");
+		$event["time"] = $tempDate->format("H:i");
 		$event["tz"] = $tempDate->format("e");
 		$event["appid"] = $_appid;
 		$event["img_small"] = $_img_small;
