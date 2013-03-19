@@ -75,7 +75,6 @@ class SteamEventParser {
 		$event["date"] = $tempDate->format("Y-m-d");
 		$event["time"] = $tempDate->format("H:ia");
 		$event["tz"] = $tempDate->format("e");
-		$event["datetime"] = $tempDate->format("Y-m-d H:ia e");
 		$event["appid"] = $_appid;
 		$event["img_small"] = $_img_small;
 		$event["img_header"] = $_img_header;
@@ -101,14 +100,25 @@ class SteamEventParser {
 		$month = (empty($month)) ? gmstrftime("%m") : $month;
 		$month = (strlen($month) === 1) ? "0" . $month : (string) $month;
 		$year = (empty($year)) ? gmstrftime("%Y") : $year;
-		do {
-			$tries -= 1;
-			// TODO: check robots.txt
-			$f = @fopen("http://steamcommunity.com/groups/" . $group ."/events?xml=1&action=eventFeed&month=$month&year=$year", "r");
-			if ($f !== false) {
-				break;
+		// TODO: HTTPS?
+		$url = "http://steamcommunity.com/groups/" . $group . "/events?xml=1&action=eventFeed&month=$month&year=$year";
+		// Setting the (upcoming) file handle to true for ultimate hackiness
+		$f = true;
+		// Checking robots.txt with rbt_prs (https://github.com/meklu/rbt_prs) if it's been included
+		if (function_exists("isUrlBotSafe")) {
+			if (!isUrlBotSafe($url)) {
+				$f = false;
 			}
-		} while ($tries > 0);
+		}
+		if ($f) {
+			do {
+				$tries -= 1;
+				$f = @fopen($url, "r");
+				if ($f !== false) {
+					break;
+				}
+			} while ($tries > 0);
+		}
 		if ($f === false) {
 			return array("status" => false, "events" => array(), "pastevents" => array(),);
 		}
