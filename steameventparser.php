@@ -1,5 +1,6 @@
 <?php
 /* copyleft 2013 (CC-0) Melker "meklu" Narikka
+ * copyleft 2013 (CC-0) Josh "Cheeseness" Bush
  *
  * This is a library that parses events for a Steam group
  * into a neat array. We pull dates but not times, since
@@ -28,7 +29,7 @@ class SteamEventParser {
 	 * @param int $year The numeric year
 	 * @return array An array of awesome stuff.
 	 */
-	private function parseEvent($str, $month, $year) {
+	private function parseEvent($str, $month, $year, $tzSrc, $tzDest) {		
 		$html = new DOMDocument();
 		$html->loadHTML($str);
 		$event = array();
@@ -44,6 +45,8 @@ class SteamEventParser {
 						$_date = explode(" ", $subnode->firstChild->textContent);
 						$_date = (strlen($_date[1]) === 1) ? "0" . $_date[1] : (string) $_date[1];
 						$_date = "$year-$month-" . $_date;
+						
+						$_time = $subnode->childNodes->item(2)->textContent;
 					} elseif ($class === "playerAvatar") {
 						// url, images
 						$a = $subnode->firstChild;
@@ -62,10 +65,17 @@ class SteamEventParser {
 				}
 			}
 		}
+		
+		$tempDate = new DateTime($_date . " " . $_time, $tzSrc);
+		$tempDate->setTimeZone($tzDest);
+
 		$event["id"] = $_id;
 		$event["url"] = $_url;
 		$event["title"] = $_title;
-		$event["date"] = $_date;
+		$event["date"] = $tempDate->format("Y-m-d");
+		$event["time"] = $tempDate->format("H:ia");
+		$event["tz"] = $tempDate->format("e");
+		$event["datetime"] = $tempDate->format("Y-m-d H:ia e");
 		$event["appid"] = $_appid;
 		$event["img_small"] = $_img_small;
 		$event["img_header"] = $_img_header;
@@ -82,7 +92,12 @@ class SteamEventParser {
 	 * @param int $tries The amount of tries used for grabbing the data from Steam
 	 * @return array An array of events
 	 */
-	public function genData($group, $month = "", $year = "", $tries = 3) {
+	public function genData($group, $month = "", $year = "", $tries = 3, $tz = "UTC") {
+
+		//This is the time zone that events seem to be stored in
+		$pst = new DateTimeZone("America/Los_Angeles");
+		
+		$tzDest = new DateTimeZone($tz);
 		$month = (empty($month)) ? gmstrftime("%m") : $month;
 		$month = (strlen($month) === 1) ? "0" . $month : (string) $month;
 		$year = (empty($year)) ? gmstrftime("%Y") : $year;
@@ -104,10 +119,10 @@ class SteamEventParser {
 		$events = array();
 		$pastevents = array();
 		foreach ($xml->getElementsByTagName("event") as $e) {
-			$events[] = $this->parseEvent($e->nodeValue, $month, $year);
+			$events[] = $this->parseEvent($e->nodeValue, $month, $year, $pst, $tzDest);
 		}
 		foreach ($xml->getElementsByTagName("expiredEvent") as $e) {
-			$pastevents[] = $this->parseEvent($e->nodeValue, $month, $year);
+			$pastevents[] = $this->parseEvent($e->nodeValue, $month, $year, $pst, $tzDest);
 		}
 		return array("status" => true, "events" => $events, "pastevents" => $pastevents);
 	}

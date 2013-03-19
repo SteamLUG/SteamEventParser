@@ -23,78 +23,120 @@ environment.
 
 The data will look something like this:
 
-    array (
-        'status' => true,
-        'events' => 
-        array (
-            0 => 
-            array (
-                'id' => '1298431274646156785',
-                'url' => 'http://steamcommunity.com/groups/steamlug#events/1298431274646156785',
-                'title' => 'SteamLUG FPS Friturday #7',
-                'date' => '2013-03-15',
-                'appid' => '223470',
-                'img_small' => 'http://media.steampowered.com/steamcommunity/public/images/apps/223470/059837f790367b171af255980c09614d71a34efe.jpg',
-                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/223470/header.jpg',
-                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/223470/header_292x136.jpg',
-            ),
-            1 => 
-            array (
-                'id' => '1299557718965155742',
-                'url' => 'http://steamcommunity.com/groups/steamlug#events/1299557718965155742',
-                'title' => 'SteamLUG Team Fortress 2',
-                'date' => '2013-03-22',
-                'appid' => '440',
-                'img_small' => 'http://media.steampowered.com/steamcommunity/public/images/apps/440/e3f595a92552da3d664ad00277fad2107345f743.jpg',
-                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/440/header.jpg',
-                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/440/header_292x136.jpg',
-            ),
-            2 => 
-            array (
-                'id' => '1299557718964524322',
-                'url' => 'http://steamcommunity.com/groups/steamlug#events/1299557718964524322',
-                'title' => 'SteamLUG FPS Friturday #8',
-                'date' => '2013-03-23',
-                'appid' => '80',
-                'img_small' => 'http://media.steampowered.com/steamcommunity/public/images/apps/80/077b050ef3e89cd84e2c5a575d78d53b54058236.jpg',
-                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/80/header.jpg',
-                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/80/header_292x136.jpg',
-            ),
-        ),
-        'pastevents' => 
-        array (
-            0 => 
-            array (
-                'id' => '1298431274645364521',
-                'url' => 'http://steamcommunity.com/groups/steamlug#events/1298431274645364521',
-                'title' => 'SteamLUG FPS Friturday #6',
-                'date' => '2013-03-09',
-                'appid' => '1200',
-                'img_small' => 'http://media.steampowered.com/steamcommunity/public/images/apps/1200/66519d69efc5b98bdafe61347db4ec8be01dff7b.jpg',
-                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/1200/header.jpg',
-                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/1200/header_292x136.jpg',
-            ),
-            1 => 
-            array (
-                'id' => '1298431274647178464',
-                'url' => 'http://steamcommunity.com/groups/steamlug#events/1298431274647178464',
-                'title' => 'SteamLUG Team Fortress 2',
-                'date' => '2013-03-08',
-                'appid' => '440',
-                'img_small' => 'http://media.steampowered.com/steamcommunity/public/images/apps/440/e3f595a92552da3d664ad00277fad2107345f743.jpg',
-                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/440/header.jpg',
-                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/440/header_292x136.jpg',
-            ),
-            2 => 
-            array (
-                'id' => '1298431274644569141',
-                'url' => 'http://steamcommunity.com/groups/steamlug#events/1298431274644569141',
-                'title' => 'SteamLUG FPS Friturday #5',
-                'date' => '2013-03-01',
-                'appid' => '240',
-                'img_small' => 'http://media.steampowered.com/steamcommunity/public/images/apps/240/9052fa60c496a1c03383b27687ec50f4bf0f0e10.jpg',
-                'img_header' => 'http://cdn.steampowered.com/v/gfx/apps/240/header.jpg',
-                'img_header_small' => 'http://cdn.steampowered.com/v/gfx/apps/240/header_292x136.jpg',
-            ),
-        ),
-    )
+Array
+(
+    [status] => 1
+    [events] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1299557718965155742
+                    [url] => http://steamcommunity.com/groups/steamlug#events/1299557718965155742
+                    [title] => SteamLUG Team Fortress 2
+                    [date] => 2013-03-22
+                    [time] => 20:00pm
+                    [tz] => UTC
+                    [datetime] => 2013-03-22 20:00pm UTC
+                    [appid] => 440
+                    [img_small] => http://media.steampowered.com/steamcommunity/public/images/apps/440/e3f595a92552da3d664ad00277fad2107345f743.jpg
+                    [img_header] => http://cdn.steampowered.com/v/gfx/apps/440/header.jpg
+                    [img_header_small] => http://cdn.steampowered.com/v/gfx/apps/440/header_292x136.jpg
+                )
+
+            [1] => Array
+                (
+                    [id] => 1299557718964524322
+                    [url] => http://steamcommunity.com/groups/steamlug#events/1299557718964524322
+                    [title] => SteamLUG FPS Friturday #8
+                    [date] => 2013-03-23
+                    [time] => 20:00pm
+                    [tz] => UTC
+                    [datetime] => 2013-03-23 20:00pm UTC
+                    [appid] => 80
+                    [img_small] => http://media.steampowered.com/steamcommunity/public/images/apps/80/077b050ef3e89cd84e2c5a575d78d53b54058236.jpg
+                    [img_header] => http://cdn.steampowered.com/v/gfx/apps/80/header.jpg
+                    [img_header_small] => http://cdn.steampowered.com/v/gfx/apps/80/header_292x136.jpg
+                )
+
+            [2] => Array
+                (
+                    [id] => 1586664093277136705
+                    [url] => http://steamcommunity.com/groups/steamlug#events/1586664093277136705
+                    [title] => SteamLUG FPS Friturday #9
+                    [date] => 2013-03-29
+                    [time] => 20:00pm
+                    [tz] => UTC
+                    [datetime] => 2013-03-29 20:00pm UTC
+                    [appid] => 320
+                    [img_small] => http://media.steampowered.com/steamcommunity/public/images/apps/320/795e85364189511f4990861b578084deef086cb1.jpg
+                    [img_header] => http://cdn.steampowered.com/v/gfx/apps/320/header.jpg
+                    [img_header_small] => http://cdn.steampowered.com/v/gfx/apps/320/header_292x136.jpg
+                )
+
+        )
+
+    [pastevents] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1298431274646156785
+                    [url] => http://steamcommunity.com/groups/steamlug#events/1298431274646156785
+                    [title] => SteamLUG FPS Friturday #7
+                    [date] => 2013-03-15
+                    [time] => 20:00pm
+                    [tz] => UTC
+                    [datetime] => 2013-03-15 20:00pm UTC
+                    [appid] => 223470
+                    [img_small] => http://media.steampowered.com/steamcommunity/public/images/apps/223470/059837f790367b171af255980c09614d71a34efe.jpg
+                    [img_header] => http://cdn.steampowered.com/v/gfx/apps/223470/header.jpg
+                    [img_header_small] => http://cdn.steampowered.com/v/gfx/apps/223470/header_292x136.jpg
+                )
+
+            [1] => Array
+                (
+                    [id] => 1298431274645364521
+                    [url] => http://steamcommunity.com/groups/steamlug#events/1298431274645364521
+                    [title] => SteamLUG FPS Friturday #6
+                    [date] => 2013-03-09
+                    [time] => 20:00pm
+                    [tz] => UTC
+                    [datetime] => 2013-03-09 20:00pm UTC
+                    [appid] => 1200
+                    [img_small] => http://media.steampowered.com/steamcommunity/public/images/apps/1200/66519d69efc5b98bdafe61347db4ec8be01dff7b.jpg
+                    [img_header] => http://cdn.steampowered.com/v/gfx/apps/1200/header.jpg
+                    [img_header_small] => http://cdn.steampowered.com/v/gfx/apps/1200/header_292x136.jpg
+                )
+
+            [2] => Array
+                (
+                    [id] => 1298431274647178464
+                    [url] => http://steamcommunity.com/groups/steamlug#events/1298431274647178464
+                    [title] => SteamLUG Team Fortress 2
+                    [date] => 2013-03-08
+                    [time] => 20:00pm
+                    [tz] => UTC
+                    [datetime] => 2013-03-08 20:00pm UTC
+                    [appid] => 440
+                    [img_small] => http://media.steampowered.com/steamcommunity/public/images/apps/440/e3f595a92552da3d664ad00277fad2107345f743.jpg
+                    [img_header] => http://cdn.steampowered.com/v/gfx/apps/440/header.jpg
+                    [img_header_small] => http://cdn.steampowered.com/v/gfx/apps/440/header_292x136.jpg
+                )
+
+            [3] => Array
+                (
+                    [id] => 1298431274644569141
+                    [url] => http://steamcommunity.com/groups/steamlug#events/1298431274644569141
+                    [title] => SteamLUG FPS Friturday #5
+                    [date] => 2013-03-01
+                    [time] => 20:00pm
+                    [tz] => UTC
+                    [datetime] => 2013-03-01 20:00pm UTC
+                    [appid] => 240
+                    [img_small] => http://media.steampowered.com/steamcommunity/public/images/apps/240/9052fa60c496a1c03383b27687ec50f4bf0f0e10.jpg
+                    [img_header] => http://cdn.steampowered.com/v/gfx/apps/240/header.jpg
+                    [img_header_small] => http://cdn.steampowered.com/v/gfx/apps/240/header_292x136.jpg
+                )
+
+        )
+
+)
