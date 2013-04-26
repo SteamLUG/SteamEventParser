@@ -27,9 +27,11 @@ class SteamEventParser {
 	 * @param string $str The HTML string from which to parse the event
 	 * @param int $month The numeric month
 	 * @param int $year The numeric year
+	 * @param string $tzSrc The timezone in which the data's times are stored
+	 * @param string $tzDest The timezone to convert to
 	 * @return array An array of awesome stuff.
 	 */
-	private function parseEvent($str, $month, $year, $tzSrc, $tzDest) {		
+	private function parseEvent($str, $month, $year, $tzSrc, $tzDest) {
 		$html = new DOMDocument();
 		$html->loadHTML($str);
 		$event = array();
@@ -45,7 +47,6 @@ class SteamEventParser {
 						$_date = explode(" ", $subnode->firstChild->textContent);
 						$_date = (strlen($_date[1]) === 1) ? "0" . $_date[1] : (string) $_date[1];
 						$_date = "$year-$month-" . $_date;
-						
 						$_time = $subnode->childNodes->item(2)->textContent;
 					} elseif ($class === "playerAvatar") {
 						// url, images
@@ -55,7 +56,7 @@ class SteamEventParser {
 						$_img_small = $img->getAttribute("src");
 						$_appid = explode("/", $_img_small);
 						$_appid = $_appid[count($_appid) - 2];
-						if (empty($_appid) {
+						if (empty($_appid)) {
 							$_img_header = "";
 							$_img_header_small = "";
 						} else {
@@ -93,20 +94,21 @@ class SteamEventParser {
 	 * @param string $group The Steam group to get the data for
 	 * @param int $month The numeric month
 	 * @param int $year The numeric year
+	 * @param bool $ssl Whether to use HTTPS for grabbing and displaying the data
 	 * @param int $tries The amount of tries used for grabbing the data from Steam
+	 * @param string $tz The timezone to convert the returned times to
 	 * @return array An array of events
 	 */
-	public function genData($group, $month = "", $year = "", $tries = 3, $tz = "UTC") {
-
+	public function genData($group, $month = "", $year = "", $ssl = false, $tries = 3, $tz = "UTC") {
 		//This is the time zone that events seem to be stored in
 		$pst = new DateTimeZone("America/Los_Angeles");
-		
 		$tzDest = new DateTimeZone($tz);
 		$month = (empty($month)) ? gmstrftime("%m") : $month;
 		$month = (strlen($month) === 1) ? "0" . $month : (string) $month;
 		$year = (empty($year)) ? gmstrftime("%Y") : $year;
 		// TODO: HTTPS?
-		$url = "http://steamcommunity.com/groups/" . $group . "/events?xml=1&action=eventFeed&month=$month&year=$year";
+		$url = ($ssl) ? "https" : "http";
+		$url.= "://steamcommunity.com/groups/" . $group . "/events?xml=1&action=eventFeed&month=$month&year=$year";
 		// Setting the (upcoming) file handle to true for ultimate hackiness
 		$f = true;
 		// Checking robots.txt with rbt_prs (https://github.com/meklu/rbt_prs) if it's been included
