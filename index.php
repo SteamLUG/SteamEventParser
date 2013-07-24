@@ -17,4 +17,6 @@ $parser = new SteamEventParser();
 /* Generating and echoing the data */
 $data = $parser->genData("steamlug");
 echo json_encode($data);
+/* The following was used to generate the example data in the README: */
+# echo preg_replace("#(\h)+$#m", "", preg_replace("#^#m", "    ", str_replace("  ", "    ", var_export($data, true)))) . "\n";
 ?>
